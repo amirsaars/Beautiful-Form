@@ -1,0 +1,88 @@
+@import "./_variables.scss";
+
+@mixin floatingLabel(){
+    color : $primary;
+    transform: translate(5px, -13px) scale(0.9);
+}
+
+@font-face{
+    font-family : Vazir;
+    src: url("../assets/Vazir.ttf");
+}
+
+*{
+    direction : rtl;
+    text-align : right;
+    font-family : Vazir;
+    box-sizing : border-box;
+}
+
+body{
+    margin : 25px;
+}
+
+
+.card{
+    display : flex;
+    width : 700px;
+    margin : 0 auto;
+    justify-content : center;
+    border-radius : 19px;
+    max-width : 100%;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    padding : 15px;
+}
+
+.animated-input{
+    display : flex;
+    height : 56px;
+    position : relative;
+    background-color : $backgroundColor;
+    cursor : text;
+    border-radius : 28px;
+    transition : background 0.3s linear;
+    &:hover, &:focus-within{
+        background-color : rgba(0, 0, 0, 0.08);
+    }
+
+    border : 1px solid $backgroundColor;
+
+    &:focus-within{
+        border-color : $primary;
+    }
+
+    margin: {
+        bottom : 15px;
+    }
+    padding: {
+        left : $inputPadding;
+        right : $inputPadding;
+    }
+    
+    &__label{
+        position : absolute;
+        top : 17px;
+        font-size : 13px;
+        color : $labelColor;
+        transition : all 0.3s ease-out;
+        &--active{
+            @include floatingLabel();
+        }
+    }
+    &__input{
+        all : initial;
+        width : 100%;
+        flex : 1;
+        margin: {
+            top : 15px;
+        }
+        padding: {
+            top : 5px;
+            bottom : 5px;
+        }
+    }
+    &__input:focus-within + &__label{
+        @include floatingLabel()
+    }
+
+}
